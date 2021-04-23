@@ -54,10 +54,10 @@ do
     #Assigning values depending on the satellite 
     if [[ $satellite = "1" ]]
     then
-        gdal_translate -of GTiff -outsize 174 51  $j/*B2.tif $j/B2_100.TIF
-        gdal_translate -of GTiff -outsize 174 51  $j/*B3.tif $j/B3_100.TIF
-        gdal_translate -of GTiff -outsize 174 51  $j/*B4.tif $j/B4_100.TIF
-        gdal_translate -of GTiff -outsize 174 51  $j/*B5.tif $j/B5_100.TIF
+        gdal_translate -of GTiff -outsize 174 51  $j/*B2.* $j/B2_100.TIF
+        gdal_translate -of GTiff -outsize 174 51  $j/*B3.* $j/B3_100.TIF
+        gdal_translate -of GTiff -outsize 174 51  $j/*B4.* $j/B4_100.TIF
+        gdal_translate -of GTiff -outsize 174 51  $j/*B5.* $j/B5_100.TIF
         green=$j/B2_100.TIF
         blue=$j/B3_100.TIF
         ir=$j/B4_100.TIF
@@ -67,10 +67,10 @@ do
         z=99
     elif [[ $satellite = "2" ]]
     then
-        gdal_translate -of GTiff -outsize 174 51 $j/*B3.TIF $j/B3_100.TIF
-        gdal_translate -of GTiff -outsize 174 51  $j/*B4.TIF $j/B4_100.TIF
-        gdal_translate -of GTiff -outsize 174 51  $j/*B5.TIF $j/B5_100.TIF
-        gdal_translate -of GTiff -outsize 174 51  $j/*B6.TIF $j/B6_100.TIF
+        gdal_translate -of GTiff -outsize 174 51  $j/*B3.* $j/B3_100.TIF
+        gdal_translate -of GTiff -outsize 174 51  $j/*B4.* $j/B4_100.TIF
+        gdal_translate -of GTiff -outsize 174 51  $j/*B5.* $j/B5_100.TIF
+        gdal_translate -of GTiff -outsize 174 51  $j/*B6.* $j/B6_100.TIF
         green=$j/B3_100.TIF
         blue=$j/B4_100.TIF
         ir=$j/B5_100.TIF
@@ -80,10 +80,10 @@ do
         z=25558
     elif [[ $satellite = "3" ]]
     then
-        gdal_translate -of GTiff -outsize 174 51 $j/*B03.tif $j/B03_100.TIF
-        gdal_translate -of GTiff -outsize 174 51  $j/*B04.tif $j/B04_100.TIF
-        gdal_translate -of GTiff -outsize 174 51  $j/*B08.tif $j/B08_100.TIF
-        gdal_translate -of GTiff -outsize 174 51  $j/*B11.tif $j/B11_100.TIF
+        gdal_translate -of GTiff -outsize 174 51  $j/*B03.* $j/B03_100.TIF
+        gdal_translate -of GTiff -outsize 174 51  $j/*B04.* $j/B04_100.TIF
+        gdal_translate -of GTiff -outsize 174 51  $j/*B08.* $j/B08_100.TIF
+        gdal_translate -of GTiff -outsize 174 51  $j/*B11.* $j/B11_100.TIF
         green=$j/B03_100.TIF
         blue=$j/B04_100.TIF
         ir=$j/B08_100.TIF
