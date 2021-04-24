@@ -54,40 +54,28 @@ do
     #Assigning values depending on the satellite 
     if [[ $satellite = "1" ]]
     then
-        gdal_translate -of GTiff -outsize 174 51  $j/*B2.* $j/B2_100.TIF
-        gdal_translate -of GTiff -outsize 174 51  $j/*B3.* $j/B3_100.TIF
-        gdal_translate -of GTiff -outsize 174 51  $j/*B4.* $j/B4_100.TIF
-        gdal_translate -of GTiff -outsize 174 51  $j/*B5.* $j/B5_100.TIF
-        green=$j/B2_100.TIF
-        blue=$j/B3_100.TIF
-        ir=$j/B4_100.TIF
-        swir=$j/B5_100.TIF
+        green=$j/*B2.*
+        blue=$j/*B3.*
+        ir=$j/*B4.*
+        swir=$j/*B5.*
         x=51
         y=44
         z=99
     elif [[ $satellite = "2" ]]
     then
-        gdal_translate -of GTiff -outsize 174 51  $j/*B3.* $j/B3_100.TIF
-        gdal_translate -of GTiff -outsize 174 51  $j/*B4.* $j/B4_100.TIF
-        gdal_translate -of GTiff -outsize 174 51  $j/*B5.* $j/B5_100.TIF
-        gdal_translate -of GTiff -outsize 174 51  $j/*B6.* $j/B6_100.TIF
-        green=$j/B3_100.TIF
-        blue=$j/B4_100.TIF
-        ir=$j/B5_100.TIF
-        swir=$j/B6_100.TIF
+        green=$j/*B3.*
+        blue=$j/*B4.*
+        ir=$j/*B5.*
+        swir=$j/*B6.*
         x=11468
         y=11468
         z=25558
     elif [[ $satellite = "3" ]]
     then
-        gdal_translate -of GTiff -outsize 174 51  $j/*B03.* $j/B03_100.TIF
-        gdal_translate -of GTiff -outsize 174 51  $j/*B04.* $j/B04_100.TIF
-        gdal_translate -of GTiff -outsize 174 51  $j/*B08.* $j/B08_100.TIF
-        gdal_translate -of GTiff -outsize 174 51  $j/*B11.* $j/B11_100.TIF
-        green=$j/B03_100.TIF
-        blue=$j/B04_100.TIF
-        ir=$j/B08_100.TIF
-        swir=$j/B11_100.TIF
+        green=$j/*B03.*
+        blue=$j/*B04.*
+        ir=$j/*B08.*
+        swir=$j/*B11.*
         x=4400
         y=4400
         z=5100
