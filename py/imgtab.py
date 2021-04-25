@@ -89,8 +89,12 @@ if i_m > 0:
 else:
     mois_i= 0
 clouds = (clouds_px / all_px) * 100
-snow = (snow_px / (all_px-clouds_px)) * 100
-veg = (veg_px / (all_px-clouds_px)) * 100
+if all_px > clouds_px:
+    snow = (snow_px / (all_px-clouds_px)) * 100
+    veg = (veg_px / (all_px-clouds_px)) * 100
+else:
+    snow = 0
+    veg = 0
        
 #Writing data to a file
 outfile = open(outPath, 'a')
