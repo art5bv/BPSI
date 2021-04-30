@@ -55,7 +55,7 @@ do
     if [[ $satellite = "1" ]]
     then
         green=$j/*B2.*
-        blue=$j/*B3.*
+        red=$j/*B3.*
         ir=$j/*B4.*
         swir=$j/*B5.*
         x=51
@@ -64,7 +64,7 @@ do
     elif [[ $satellite = "2" ]]
     then
         green=$j/*B3.*
-        blue=$j/*B4.*
+        red=$j/*B4.*
         ir=$j/*B5.*
         swir=$j/*B6.*
         x=11468
@@ -73,7 +73,7 @@ do
     elif [[ $satellite = "3" ]]
     then
         green=$j/*B03.*
-        blue=$j/*B04.*
+        red=$j/*B04.*
         ir=$j/*B08.*
         swir=$j/*B11.*
         x=4400
@@ -84,12 +84,12 @@ do
     #Index calculation
     echo $r/$timestamp/indexes${j:p}
     #Clouds
-    gdal_calc.py -A $green -B $blue -C $swir --outfile=$r/$timestamp/indexes${j:p}/CLOUDS.TIF --calc="100*logical_or (logical_and (C.astype(float)>$x,A.astype(float)>$y,((A.astype(float)-B.astype(float))/(A.astype(float)+B.astype(float)))>0),(A.astype(float)>$z))" --type="Float32" --NoDataValue=0
+    gdal_calc.py -A $green -B $red -C $swir --outfile=$r/$timestamp/indexes${j:p}/CLOUDS.TIF --calc="100*logical_or (logical_and (C.astype(float)>$x,A.astype(float)>$y,((A.astype(float)-B.astype(float))/(A.astype(float)+B.astype(float)))>0),(A.astype(float)>$z))" --type="Float32" --NoDataValue=0
     #Snow
     gdal_calc.py -A $green -B $swir --outfile=$r/$timestamp/indexes${j:p}/NDSI.TIF --calc="((A.astype(float)-B.astype(float))/(A.astype(float)+B.astype(float)))*((A.astype(float)-B.astype(float))/(A.astype(float)+B.astype(float))>=0.42)" --type="Float32" --NoDataValue=0
     gdal_calc.py -A $r/$timestamp/indexes${j:p}/NDSI.TIF --outfile=$r/$timestamp/indexes${j:p}/SNOW.TIF --calc="((200+((A/0.58)-(0.42/0.58)))*(((A/0.58)-(0.42/0.58))>0))" --type="Float32" --NoDataValue=0
     #Vegetation
-    gdal_calc.py -A $ir -B $blue --outfile=$r/$timestamp/indexes${j:p}/NDVI.TIF --calc="((A.astype(float)-B.astype(float))/(A.astype(float)+B.astype(float)))*((A.astype(float)-B.astype(float))/(A.astype(float)+B.astype(float))>0.2)" --type="Float32" --NoDataValue=0
+    gdal_calc.py -A $ir -B $red --outfile=$r/$timestamp/indexes${j:p}/NDVI.TIF --calc="((A.astype(float)-B.astype(float))/(A.astype(float)+B.astype(float)))*((A.astype(float)-B.astype(float))/(A.astype(float)+B.astype(float))>0.2)" --type="Float32" --NoDataValue=0
     gdal_calc.py -A $r/$timestamp/indexes${j:p}/NDVI.TIF --outfile=$r/$timestamp/indexes${j:p}/VEG.TIF --calc="((300+((A/0.8)-(0.2/0.8)))*(((A/0.8)-(0.2/0.8))>0))" --type="Float32" --NoDataValue=0
     #Moisture
     gdal_calc.py -A $ir -B $swir --outfile=$r/$timestamp/indexes${j:p}/NDMI.TIF --calc="(((A.astype(float)-B.astype(float))/(A.astype(float)+B.astype(float))))*((A.astype(float)-B.astype(float))/(A.astype(float)+B.astype(float))>-0.2)" --type="Float32" --NoDataValue=0
